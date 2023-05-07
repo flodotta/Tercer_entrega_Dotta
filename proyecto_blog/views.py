@@ -9,9 +9,9 @@ def saludar(request):
     return pagina_html
 
 def saludar_con_html(request):
-    contexto = {}
-     #   "usuario": "Pedro"
-    #}
+    contexto = {
+        "usuario": "Flopydu"
+    }
     http_response = render(
         request=request,
         template_name='control_usuarios/base.html',
