@@ -3,8 +3,7 @@ from django.db import models
 # Create your models here.
 # Creo 4 clases: Lector, Escritor, Articulo
 
- #   def __str__(self):
-  #      return f"{self.apellido}, {self.nombre}"
+#creo la clase lector
 class Lector(models.Model):
     apellido = models.CharField(max_length=256)
     nombre = models.CharField(max_length=256)
@@ -13,6 +12,11 @@ class Lector(models.Model):
     dni = models.CharField(max_length=32)
     fecha_nacimiento = models.DateField(null=True)
 
+#le agrego el método mágico str para visualizarlo bien en el panel admin
+    def __str__(self):
+        return f"{self.apellido}, {self.nombre}"
+
+#Creo la clase Escritor    
 class Escritor(models.Model):
     apellido = models.CharField(max_length=256)
     nombre = models.CharField(max_length=256)
@@ -21,24 +25,17 @@ class Escritor(models.Model):
     dni = models.CharField(max_length=32)
     fecha_nacimiento = models.DateField(null=True)    
 
+ #le agrego el método mágico str para visualizarlo bien en el panel admin
+    def __str__(self):
+        return f"{self.apellido}, {self.nombre}, {self.fecha_nacimiento}"
+
+#Creo la clase articulo
 class Articulo(models.Model):
     nombre = models.CharField(max_length=256)
     codigo = models.CharField(max_length=20)
     categoria = models.CharField(max_length=256)
     fecha_publicacion = models.DateField(null=True)
   
-
-  #  def __str__(self):
-   #     return f"{self.nombre}, {self.apellido}"
-    
-class Profesor(models.Model):
-    apellido = models.CharField(max_length=256)
-    nombre = models.CharField(max_length=256)
-    dni = models.CharField(max_length=32)
-    email = models.EmailField(blank=True)
-    fecha_nacimiento = models.DateField(null=True, blank=True)
-    profesion = models.CharField(max_length=128)
-    bio = models.TextField(blank=True)
-
-   # def __str__(self):
-    #    return f"{self.nombre} | {self.comision}"
+  #le agrego el método mágico str para visualizarlo bien en el panel admin
+    def __str__(self):
+        return f"{self.nombre}, {self.categoria}, {self.fecha_publicacion}"
