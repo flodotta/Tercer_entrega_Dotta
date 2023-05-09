@@ -4,9 +4,9 @@ from django.shortcuts import render
 def listar_lectores(request):
     contexto = {
         "lectores": [
-            {"nombre": "Cata" , "comision": "1000"} ,
-            {"nombre": "Flo" , "comision": "1001"} ,
-            {"nombre": "Mahia" , "comision": "1002"}, 
+            {"nombre": "Cata" , "apellido": "Berton"} ,
+            {"nombre": "Flo" , "apellido": "Berton"} ,
+            {"nombre": "Mahia" , "apellido": "Berton"}, 
         ]
     }
     http_response = render(
@@ -35,6 +35,11 @@ def listar_escritores(request):
 # Create your views Articulos here.
 def listar_articulos(request):
     contexto = {
+        "articulos": [
+            {"nombre": "Nombre 1" , "categoria": "recetas"} ,
+            {"nombre": "Nombre 2" , "categoria": "libros"} ,
+            {"nombre": "Nombre 3" , "categoria": "deporte"} ,
+        ]
     }
     http_response = render(
         request=request,
