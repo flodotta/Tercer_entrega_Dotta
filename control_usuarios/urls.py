@@ -21,6 +21,6 @@ from django.urls import path
 from control_usuarios.views import listar_estudiantes , listar_cursos
 
 urlpatterns = [
-    path('estudiantes/', listar_estudiantes),
-    path('cursos/', listar_cursos),
+    path('estudiantes/', listar_estudiantes, name= "listar_estudiantes"),
+    path('cursos/', listar_cursos, name= "listar_cursos"),
 ]

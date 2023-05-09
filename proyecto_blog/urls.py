@@ -24,7 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('saludo/', saludar),
     path('saludo-html/', saludar_con_html),
-    path('', inicio),
+    path('', inicio,name="inicio"),
     path('estudios/', include("control_usuarios.urls"))
    
 ]
