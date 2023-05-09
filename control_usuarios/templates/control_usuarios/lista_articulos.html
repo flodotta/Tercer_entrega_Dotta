@@ -1,0 +1,14 @@
+{% extends "control_usuarios/base.html" %}
+
+{% block contenido %}
+<section>
+  <div>
+    <h1>Lista de Articulos</h1> 
+    <ul>
+    {% for articulo in articulos %}
+      <li>{{ articulo.apellido }}, {{ articulo.nombre }}</li>
+    {% endfor %}
+    </ul>
+  </div>
+</section>
+{% endblock contenido %}

@@ -17,13 +17,12 @@ class Escritor(models.Model):
     dni = models.CharField(max_length=32)
     fecha_nacimiento = models.DateField(null=True)    
 
-class Estudiante(models.Model):
-    apellido = models.CharField(max_length=256)
+class Articulo(models.Model):
     nombre = models.CharField(max_length=256)
-    email = models.EmailField(blank=True)
-    telefono = models.CharField(max_length=20, blank=True)
-    dni = models.CharField(max_length=32)
-    fecha_nacimiento = models.DateField(null=True)
+    codigo = models.CharField(max_length=20)
+    categoria = models.CharField(max_length=256)
+    fecha_creacion = models.DateField(null=True)
+  
 
   #  def __str__(self):
    #     return f"{self.nombre}, {self.apellido}"

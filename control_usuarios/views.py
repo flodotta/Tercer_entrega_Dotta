@@ -31,3 +31,14 @@ def listar_escritores(request):
         context=contexto,
     )
     return http_response
+
+# Create your views Articulos here.
+def listar_articulos(request):
+    contexto = {
+    }
+    http_response = render(
+        request=request,
+        template_name='control_usuarios/lista_articulos.html',
+        context=contexto,
+    )
+    return http_response
