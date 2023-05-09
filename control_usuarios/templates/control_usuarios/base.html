@@ -15,7 +15,7 @@
         <!-- Google fonts-->
         <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
-         <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+        <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
 
     </head>
 
@@ -29,10 +29,11 @@
             </div>
         </nav>
 
-        <div>Hola {{usuario}}</div>
 
+        <section style="padding:80px 50px;">
         {% block contenido %}
         {% endblock contenido %}
+        </section>
 
         <!-- Footer-->
         <footer class="footer bg-light">

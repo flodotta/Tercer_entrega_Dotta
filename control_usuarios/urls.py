@@ -22,5 +22,5 @@ from control_usuarios.views import listar_estudiantes , listar_cursos
 
 urlpatterns = [
     path('estudiantes/', listar_estudiantes),
-    path('cursos/', listar_cursos)
+    path('cursos/', listar_cursos),
 ]
