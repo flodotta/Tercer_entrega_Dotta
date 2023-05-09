@@ -23,6 +23,5 @@ from proyecto_blog.views import inicio
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', inicio, name= "inicio"),
-    path('estudios/', include("control_usuarios.urls"))
-   
+    path('usuarios/', include("control_usuarios.urls"))
 ]

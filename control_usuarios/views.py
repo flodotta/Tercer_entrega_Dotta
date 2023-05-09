@@ -1,22 +1,5 @@
 from django.shortcuts import render
 
-# Create your views here.
-def listar_estudiantes(request):
-    contexto = {
-        "estudiantes": [
-            {"nombre": "Emanuel" , "apellido": "Dautel"} ,
-            {"nombre": "Flo" , "apellido": "Dotta"} ,
-            {"nombre": "carlos" , "apellido": "perez"}, 
-        ]
-    }
-    http_response = render(
-        request=request,
-        template_name='control_usuarios/lista_estudiantes.html',
-        context=contexto,
-    )
-    return http_response
-
-
 # Create your views Lectores here.
 def listar_lectores(request):
     contexto = {
@@ -29,6 +12,22 @@ def listar_lectores(request):
     http_response = render(
         request=request,
         template_name='control_usuarios/lista_lectores.html',
+        context=contexto,
+    )
+    return http_response
+
+# Create your views Escritores here.
+def listar_escritores(request):
+    contexto = {
+        "escritores": [
+            {"nombre": "Emanuel" , "apellido": "Dautel"} ,
+            {"nombre": "Flo" , "apellido": "Dotta"} ,
+            {"nombre": "carlos" , "apellido": "perez"}, 
+        ]
+    }
+    http_response = render(
+        request=request,
+        template_name='control_usuarios/lista_escritores.html',
         context=contexto,
     )
     return http_response

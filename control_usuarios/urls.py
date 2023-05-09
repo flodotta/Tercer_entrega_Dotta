@@ -18,9 +18,9 @@ from django.contrib import admin
 from django.urls import path
 
 
-from control_usuarios.views import listar_estudiantes , listar_lectores
+from control_usuarios.views import listar_escritores , listar_lectores
 
 urlpatterns = [
-    path('estudiantes/', listar_estudiantes, name= "listar_estudiantes"),
     path('lectores/', listar_lectores, name= "listar_lectores"),
+    path('escritores/', listar_escritores, name= "listar_escritores")
 ]
