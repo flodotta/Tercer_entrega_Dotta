@@ -27,7 +27,7 @@ class Escritor(models.Model):
 
  #le agrego el método mágico str para visualizarlo bien en el panel admin
     def __str__(self):
-        return f"{self.apellido}, {self.nombre}, {self.fecha_nacimiento}"
+        return f"{self.apellido} / {self.nombre} / {self.fecha_nacimiento}"
 
 #Creo la clase articulo
 class Articulo(models.Model):
