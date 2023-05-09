@@ -1,0 +1,14 @@
+{% extends "control_usuarios/base.html" %}
+
+{% block contenido %}
+<section>
+  <div>
+    <h1>Lista Lectores</h1> 
+    <ul>
+    {% for lector in lectores %}
+      <li>{{ lector.nombre}}, {{ lector.comision}}</li>
+    {% endfor %}
+    </ul>
+  </div>
+</section>
+{% endblock contenido %}

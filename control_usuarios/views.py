@@ -1,8 +1,5 @@
 from django.shortcuts import render
 
-
-
-
 # Create your views here.
 def listar_estudiantes(request):
     contexto = {
@@ -20,18 +17,18 @@ def listar_estudiantes(request):
     return http_response
 
 
-# Create your views here.
-def listar_cursos(request):
+# Create your views Lectores here.
+def listar_lectores(request):
     contexto = {
-        "cursos": [
-            {"nombre": "Python" , "comision": "1000"} ,
-            {"nombre": "Frontend" , "comision": "1001"} ,
-            {"nombre": "diseño" , "comision": "1002"}, 
+        "lectores": [
+            {"nombre": "Cata" , "comision": "1000"} ,
+            {"nombre": "Flo" , "comision": "1001"} ,
+            {"nombre": "Mahia" , "comision": "1002"}, 
         ]
     }
     http_response = render(
         request=request,
-        template_name='control_usuarios/lista_cursos.html',
+        template_name='control_usuarios/lista_lectores.html',
         context=contexto,
     )
     return http_response

@@ -25,7 +25,7 @@ class Profesor(models.Model):
 
  #   def __str__(self):
   #      return f"{self.apellido}, {self.nombre}"
-class Curso(models.Model):
+class Lector(models.Model):
     nombre = models.CharField(max_length=64)  # Equivalente de str
     comision = models.IntegerField()  # Equivalent de int
 

@@ -17,14 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include 
 
-from proyecto_blog.views import saludar, saludar_con_html, inicio
+from proyecto_blog.views import inicio
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('saludo/', saludar),
-    path('saludo-html/', saludar_con_html),
-    path('', inicio,name="inicio"),
+    path('', inicio, name= "inicio"),
     path('estudios/', include("control_usuarios.urls"))
    
 ]
