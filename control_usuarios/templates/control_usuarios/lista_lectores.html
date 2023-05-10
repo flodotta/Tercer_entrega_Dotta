@@ -3,7 +3,9 @@
 {% block contenido %}
 <section>
   <div>
+    
     <h1>Lista Lectores</h1> 
+    <a href="{% url 'crear_lector' %}">Crear Lector</a>
     <ul>
     {% for lector in lectores %}
       <li>{{ lector.nombre}}, {{ lector.apellido}}</li>

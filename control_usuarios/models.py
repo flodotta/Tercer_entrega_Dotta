@@ -8,8 +8,6 @@ class Lector(models.Model):
     apellido = models.CharField(max_length=256)
     nombre = models.CharField(max_length=256)
     email = models.EmailField(blank=True)
-    telefono = models.CharField(max_length=20, blank=True)
-    dni = models.CharField(max_length=32)
     fecha_nacimiento = models.DateField(null=True)
 
 #le agrego el método mágico str para visualizarlo bien en el panel admin

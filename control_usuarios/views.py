@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.urls import reverse
 
 #from control_usuarios.forms import CursoFormulario
 from control_usuarios.models import Lector, Escritor, Articulo
@@ -37,16 +38,28 @@ def listar_articulos(request):
         template_name='control_usuarios/lista_articulos.html',
         context=contexto,
     )
+
+    
     return http_response
 
 # Creao la view del formulario
 
 def crear_lector(request):
-    """sin logica"""
-    contexto = {}
-    http_response = render(
-        request=request,
-        template_name='control_usuarios/formulario_lectores_a_mano.html',
-        context=contexto,
-    )
+    if request.method == "POST":
+        data = request.POST  # es un diccionario
+        nombre=data["nombre"]
+        apellido=data["apellido"]
+        email=data["email"]
+        fecha_nacimiento=data["fecha_nacimiento"]
+        lector = Lector(nombre=nombre, apellido=apellido, email=email,fecha_nacimiento=fecha_nacimiento)
+        lector.save
+        url_exitosa=reverse('listar_lectores')
+        return redirect(url_exitosa)
+
+    else:  # GET
+     http_response = render(
+            request=request,
+            template_name='control_usuarios/formulario_lectores_a_mano.html',
+        )
     return http_response
+
