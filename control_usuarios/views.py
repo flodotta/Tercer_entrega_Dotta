@@ -1,13 +1,12 @@
 from django.shortcuts import render
 
+#from control_usuarios.forms import CursoFormulario
+from control_usuarios.models import Lector, Escritor, Articulo
+
 # Create your views Lectores here.
 def listar_lectores(request):
     contexto = {
-        "lectores": [
-            {"nombre": "Cata" , "apellido": "Berton"} ,
-            {"nombre": "Flo" , "apellido": "Berton"} ,
-            {"nombre": "Mahia" , "apellido": "Berton"}, 
-        ]
+        "lectores": Lector.objects.all()
     }
     http_response = render(
         request=request,
@@ -19,11 +18,7 @@ def listar_lectores(request):
 # Create your views Escritores here.
 def listar_escritores(request):
     contexto = {
-        "escritores": [
-            {"nombre": "Emanuel" , "apellido": "Dautel"} ,
-            {"nombre": "Flo" , "apellido": "Dotta"} ,
-            {"nombre": "carlos" , "apellido": "perez"}, 
-        ]
+        "escritores": Escritor.objects.all()
     }
     http_response = render(
         request=request,
@@ -35,11 +30,7 @@ def listar_escritores(request):
 # Create your views Articulos here.
 def listar_articulos(request):
     contexto = {
-        "articulos": [
-            {"nombre": "Nombre 1" , "categoria": "recetas"} ,
-            {"nombre": "Nombre 2" , "categoria": "libros"} ,
-            {"nombre": "Nombre 3" , "categoria": "deporte"} ,
-        ]
+        "articulos": Articulo.objects.all()
     }
     http_response = render(
         request=request,
