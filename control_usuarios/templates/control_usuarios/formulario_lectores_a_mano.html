@@ -1,0 +1,24 @@
+{% extends "control_usuarios/base.html" %}
+
+{% block contenido %}
+<form action="{% url 'crear_lector' %}" method="post">
+    {% csrf_token %}
+    <p>Nombre del Lector</p>
+    <input type="text" name="nombre">
+    <p>Apellido del Lector</p>
+    <input type="text" name="apellido">
+    <p>Email del Lector</p>
+    <input type="email" name="email">
+    <p>Telefono del Lector</p>
+    <input type="number" name="telefono">
+    <p>dni del Lector</p>
+    <input type="number" name="dni">
+    <p>Fecha de nacimiento del Lector</p>
+    <input type="date" name="fecha_nacimiento">
+
+    <input type="submit" value="Enviar">
+  </form>
+
+{% endblock contenido %}
+
+

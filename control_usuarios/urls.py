@@ -18,10 +18,11 @@ from django.contrib import admin
 from django.urls import path
 
 
-from control_usuarios.views import listar_escritores , listar_lectores , listar_articulos
+from control_usuarios.views import listar_escritores , listar_lectores , listar_articulos, crear_lector
 
 urlpatterns = [
     path('lectores/', listar_lectores, name= "listar_lectores"),
     path('escritores/', listar_escritores, name= "listar_escritores"),
-    path('articulos/', listar_articulos, name= "listar_articulos")
+    path('articulos/', listar_articulos, name= "listar_articulos"),
+    path('crear-lector/', crear_lector, name= "crear_lector")
 ]

@@ -38,3 +38,15 @@ def listar_articulos(request):
         context=contexto,
     )
     return http_response
+
+# Creao la view del formulario
+
+def crear_lector(request):
+    """sin logica"""
+    contexto = {}
+    http_response = render(
+        request=request,
+        template_name='control_usuarios/formulario_lectores_a_mano.html',
+        context=contexto,
+    )
+    return http_response
