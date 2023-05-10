@@ -56,7 +56,7 @@ def crear_lector(request):
            email=data["email"]
            fecha_nacimiento=data["fecha_nacimiento"]
            lector = Lector(nombre=nombre, apellido=apellido, email=email,fecha_nacimiento=fecha_nacimiento)
-           lector.save
+           lector.save()
            url_exitosa=reverse('listar_lectores')
            return redirect(url_exitosa)
     else:  # GET

@@ -23,6 +23,9 @@ class Escritor(models.Model):
     dni = models.CharField(max_length=32)
     fecha_nacimiento = models.DateField(null=True)    
 
+    class Meta: 
+        verbose_name_plural = "Escritores"
+
  #le agrego el método mágico str para visualizarlo bien en el panel admin
     def __str__(self):
         return f"{self.apellido} / {self.nombre} / {self.fecha_nacimiento}"
