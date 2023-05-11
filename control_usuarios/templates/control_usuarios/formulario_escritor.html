@@ -1,0 +1,10 @@
+{% extends "control_usuarios/base.html" %}
+
+{% block contenido %}
+<form action="{% url 'crear_escritor' %}" method="post">
+    {% csrf_token %}
+    {{formulario.as_p}}
+    <input type="submit" value="Enviar">
+  </form>
+
+{% endblock contenido %}

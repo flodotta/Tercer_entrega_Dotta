@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
 
-from control_usuarios.forms import LectorFormulario
+from control_usuarios.forms import LectorFormulario, EscritorFormulario, ArticuloFormulario
 from control_usuarios.models import Lector, Escritor, Articulo
 
 
@@ -43,7 +43,7 @@ def listar_articulos(request):
     
     return http_response
 
-# Creao la view del formulario django
+# Crea la view del formulario django para crear lector
 
 def crear_lector(request):
     if request.method == "POST":
@@ -67,3 +67,73 @@ def crear_lector(request):
         context={'formulario': formulario}
     )
     return http_response
+
+# Crea la view del formulario django para crear escritor
+
+def crear_escritor(request):
+    if request.method == "POST":
+        formulario = EscritorFormulario(request.POST)
+
+        if formulario.is_valid():
+           data=formulario.cleaned_data
+           nombre=data["nombre"]
+           apellido=data["apellido"]
+           email=data["email"]
+           telefono =data["telefono"]
+           dni =data["dni"]     
+           fecha_nacimiento=data["fecha_nacimiento"]
+           escritor = Escritor(nombre=nombre, apellido=apellido, email=email, telefono=telefono, dni=dni, fecha_nacimiento=fecha_nacimiento)
+           escritor.save()
+           url_exitosa=reverse('listar_escritores')
+           return redirect(url_exitosa)
+    else:  # GET
+        formulario = EscritorFormulario()
+    http_response = render(
+        request=request,
+        template_name='control_usuarios/formulario_escritor.html',
+        context={'formulario': formulario}
+    )
+    return http_response
+
+
+# Crea la view del formulario django para crear Articulo
+
+def crear_articulo(request):
+    if request.method == "POST":
+        formulario = ArticuloFormulario(request.POST)
+
+        if formulario.is_valid():
+           data=formulario.cleaned_data
+           nombre=data["nombre"]
+           codigo=data["codigo"]
+           categoria=data["categoria"]  
+           fecha_publicacion=data["fecha_publicacion"]
+           articulo = Articulo(nombre=nombre, codigo=codigo, categoria=categoria, fecha_publicacion=fecha_publicacion)
+           articulo.save()
+           url_exitosa=reverse('listar_articulos')
+           return redirect(url_exitosa)
+    else:  # GET
+        formulario = ArticuloFormulario()
+    http_response = render(
+        request=request,
+        template_name='control_usuarios/formulario_articulo.html',
+        context={'formulario': formulario}
+    )
+    return http_response
+
+#DEfino una vista para buscar Escritores 
+
+def buscar_escritor(request):
+   if request.method == "POST":
+       data = request.POST
+       busqueda = data["busqueda"]
+       escritor = Escritor.objects.filter(apellido__icontains=busqueda)
+       contexto = {
+           "escritor": escritor,
+       }
+       http_response = render(
+           request=request,
+           template_name='control_usuarios/lista_escritores.html',
+           context=contexto,
+       )
+       return http_response

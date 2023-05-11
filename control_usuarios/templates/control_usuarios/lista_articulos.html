@@ -4,6 +4,8 @@
 <section>
   <div>
     <h1>Lista de Articulos</h1> 
+    <a href="{% url 'crear_articulo' %}">Crear Articulo</a>
+
     <ul>
     {% for articulo in articulos %}
       <li>{{ articulo.nombre }}, {{ articulo.categoria }}</li>
