@@ -129,7 +129,7 @@ def buscar_escritor(request):
        busqueda = data["busqueda"]
        escritor = Escritor.objects.filter(apellido__icontains=busqueda)
        contexto = {
-           "escritor": escritor,
+           "escritores": escritor,
        }
        http_response = render(
            request=request,
