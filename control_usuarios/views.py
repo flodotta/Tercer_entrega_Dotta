@@ -146,3 +146,39 @@ def eliminar_articulo(request, id):
        articulo.delete()
        url_exitosa = reverse('listar_articulos')
        return redirect(url_exitosa)
+   
+ #Defino una vista para actualizar(update) Articulos 
+
+def editar_articulo(request, id):
+   articulo = Articulo.objects.get(id=id)
+   if request.method == "POST":
+       formulario = ArticuloFormulario(request.POST)
+
+       if formulario.is_valid():
+           data = formulario.cleaned_data
+           
+           articulo.nombre = data['nombre']
+           articulo.codigo = data['codigo']
+           articulo.categoria = data['categoria']
+           articulo.fecha_publicacion=data['fecha_publicacion']
+           
+           articulo.save()
+           
+           url_exitosa = reverse('listar_articulos')
+           return redirect(url_exitosa)
+       
+   else:  # GET
+       inicial = {
+           'nombre': articulo.nombre,
+           'codigo': articulo.codigo,
+           'categoria': articulo.categoria,
+           'fecha_publicacion': articulo.fecha_publicacion,
+       }
+       formulario = ArticuloFormulario(initial=inicial)
+   return render(
+       request=request,
+       template_name='control_usuarios/formulario_articulo.html',
+       context={'formulario': formulario},
+   )
+
+  

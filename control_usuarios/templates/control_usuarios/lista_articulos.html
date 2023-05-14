@@ -21,7 +21,6 @@
           <th>Nombre</th>
           <th>Categoria</th>
           <th>Fecha Publicacion</th>
-          <th>Eliminar</th>
         </tr>
         {% for articulo in articulos %}
         <tr>
@@ -30,11 +29,14 @@
           <td>{{ articulo.categoria }}</td>
           <td>{{ articulo.fecha_publicacion }}</td>
           <td>
+          <td>  
+            <a href={%url 'editar_articulo' articulo.id %}>Editar</a> 
+          </td>
+          <td>
             <form action="{% url 'eliminar_articulo' articulo.id %}" method="post">
               {% csrf_token %}
               <input type="submit" value="eliminar"/>
             </form>
-     
           </td>
         </tr> 
         {% endfor %}
