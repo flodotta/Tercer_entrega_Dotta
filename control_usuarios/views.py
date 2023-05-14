@@ -137,3 +137,12 @@ def buscar_escritor(request):
            context=contexto,
        )
        return http_response
+   
+
+#Defino una vista para eliminar Articulos
+def eliminar_articulo(request, id):
+   articulo = Articulo.objects.get(id=id)
+   if request.method == "POST":
+       articulo.delete()
+       url_exitosa = reverse('listar_articulos')
+       return redirect(url_exitosa)

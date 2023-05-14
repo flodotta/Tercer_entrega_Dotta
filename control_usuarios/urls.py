@@ -18,7 +18,8 @@ from django.contrib import admin
 from django.urls import path
 
 
-from control_usuarios.views import listar_escritores , listar_lectores , listar_articulos, crear_lector, crear_escritor, crear_articulo, buscar_escritor
+from control_usuarios.views import listar_escritores , listar_lectores , listar_articulos,\
+    crear_lector, crear_escritor, crear_articulo, buscar_escritor, eliminar_articulo
 
 urlpatterns = [
     path('lectores/', listar_lectores, name= "listar_lectores"),
@@ -27,5 +28,6 @@ urlpatterns = [
     path('crear-lector/', crear_lector, name= "crear_lector"),
     path('crear-escritor/', crear_escritor, name= "crear_escritor"),
     path('crear-articulo/', crear_articulo, name= "crear_articulo"),
-    path('buscar-escritor/', buscar_escritor, name= "buscar_escritor")
+    path('buscar-escritor/', buscar_escritor, name= "buscar_escritor"),
+    path('eliminar-articulo/<int:id>/', eliminar_articulo, name= "eliminar_articulo")
 ]
