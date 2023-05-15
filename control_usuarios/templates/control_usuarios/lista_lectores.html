@@ -6,11 +6,38 @@
     
     <h1>Lista Lectores</h1> 
     <a href="{% url 'crear_lector' %}">Crear Lector</a>
-    <ul>
-    {% for lector in lectores %}
-      <li>{{ lector.nombre}}, {{ lector.apellido}}</li>
-    {% endfor %}
-    </ul>
+  
+    <table class="table">
+      <tbody>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Apellido</th>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+        {% for lector in object_list %}
+        <tr>
+          <td>{{ lector.id }}</td>
+          <td>{{ lector.nombre }}</td>
+          <td>{{ lector.apellido }}</td>
+          <td>
+            <a href="{% url 'ver_lector' lector.id %}">Ver</a>
+          </td>
+          <td>
+            <a href="{% url 'editar_lector' lector.id %}">Editar</a>
+          </td>
+          <td>
+            <a href="{% url 'eliminar_lector' lector.id %}">
+              <i class="bi bi-trash"></i>
+            </a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
   </div>
 </section>
 {% endblock contenido %}

@@ -1,0 +1,21 @@
+{% extends "control_usuarios/base.html" %}
+
+{% block contenido %}
+
+<p>
+  <strong>Apellido:</strong> {{object.apellido}}
+</p>
+<p>
+  <strong>Nombre:</strong> {{object.nombre}}
+</p>
+<p>
+  <strong>Email:</strong> {{object.email}}
+</p>
+<p>
+  <strong>Fecha Nacimiento:</strong> {{object.fecha_nacimiento}}
+</p>
+
+<br>
+<a href="{% url 'lista_lectores' %}">Volver lista</a>
+
+{% endblock contenido %}

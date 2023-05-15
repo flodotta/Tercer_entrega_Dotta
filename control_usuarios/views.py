@@ -1,21 +1,10 @@
 from django.shortcuts import render, redirect
-from django.urls import reverse
+from django.urls import reverse, reverse_lazy
+from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 
 from control_usuarios.forms import LectorFormulario, EscritorFormulario, ArticuloFormulario
 from control_usuarios.models import Lector, Escritor, Articulo
 
-
-# Create your views Lectores here.
-def listar_lectores(request):
-    contexto = {
-        "lectores": Lector.objects.all()
-    }
-    http_response = render(
-        request=request,
-        template_name='control_usuarios/lista_lectores.html',
-        context=contexto,
-    )
-    return http_response
 
 # Create your views Escritores here.
 def listar_escritores(request):
@@ -43,32 +32,6 @@ def listar_articulos(request):
     
     return http_response
 
-# Crea la view del formulario django para crear lector
-
-def crear_lector(request):
-    if request.method == "POST":
-        formulario = LectorFormulario(request.POST)
-
-        if formulario.is_valid():
-           data=formulario.cleaned_data
-           nombre=data["nombre"]
-           apellido=data["apellido"]
-           email=data["email"]
-           fecha_nacimiento=data["fecha_nacimiento"]
-           lector = Lector(nombre=nombre, apellido=apellido, email=email,fecha_nacimiento=fecha_nacimiento)
-           lector.save()
-           url_exitosa=reverse('listar_lectores')
-           return redirect(url_exitosa)
-    else:  # GET
-        formulario = LectorFormulario()
-    http_response = render(
-        request=request,
-        template_name='control_usuarios/formulario_lector.html',
-        context={'formulario': formulario}
-    )
-    return http_response
-
-# Crea la view del formulario django para crear escritor
 
 def crear_escritor(request):
     if request.method == "POST":
@@ -182,3 +145,29 @@ def editar_articulo(request, id):
    )
 
   
+#vistas basadas en clases
+
+#Vistas de Lectores
+class LectorListView(ListView):
+    model = Lector
+    template_name = 'control_usuarios/lista_lectores.html' #mismo que le pasaba al render
+
+#Crear un Lector
+class LectorCreateView(CreateView):
+    model = Lector
+    fields = ( 'nombre','apellido', 'email')
+    success_url = reverse_lazy('lista_lectores') #mismo que usaba en url exitosa pero con reverse_lazy
+
+class LectorDetailView(DetailView):
+    model = Lector
+    succes_url= reverse_lazy('lista_lectores') 
+
+class LectorUpdateView(UpdateView):
+    model = Lector
+    fields = ('apellido', 'nombre', 'email')
+    success_url = reverse_lazy('lista_lectores')
+
+class LectorDeleteView(DeleteView):
+    model = Lector
+    success_url = reverse_lazy('lista_lectores')   
+
