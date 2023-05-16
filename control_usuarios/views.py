@@ -5,6 +5,8 @@ from django.views.generic import ListView, CreateView, DetailView, UpdateView, D
 from control_usuarios.forms import LectorFormulario, EscritorFormulario, ArticuloFormulario
 from control_usuarios.models import Lector, Escritor, Articulo
 
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views Escritores here.
 def listar_escritores(request):
@@ -32,7 +34,7 @@ def listar_articulos(request):
     
     return http_response
 
-
+@login_required
 def crear_escritor(request):
     if request.method == "POST":
         formulario = EscritorFormulario(request.POST)
@@ -61,6 +63,7 @@ def crear_escritor(request):
 
 # Crea la view del formulario django para crear Articulo
 
+@login_required
 def crear_articulo(request):
     if request.method == "POST":
         formulario = ArticuloFormulario(request.POST)
@@ -103,6 +106,8 @@ def buscar_escritor(request):
    
 
 #Defino una vista para eliminar Articulos
+
+@login_required
 def eliminar_articulo(request, id):
    articulo = Articulo.objects.get(id=id)
    if request.method == "POST":
@@ -112,6 +117,7 @@ def eliminar_articulo(request, id):
    
  #Defino una vista para actualizar(update) Articulos 
 
+@login_required
 def editar_articulo(request, id):
    articulo = Articulo.objects.get(id=id)
    if request.method == "POST":
@@ -153,7 +159,8 @@ class LectorListView(ListView):
     template_name = 'control_usuarios/lista_lectores.html' #mismo que le pasaba al render
 
 #Crear un Lector
-class LectorCreateView(CreateView):
+
+class LectorCreateView(LoginRequiredMixin, CreateView):
     model = Lector
     fields = ( 'nombre','apellido', 'email')
     success_url = reverse_lazy('lista_lectores') #mismo que usaba en url exitosa pero con reverse_lazy
@@ -162,12 +169,12 @@ class LectorDetailView(DetailView):
     model = Lector
     succes_url= reverse_lazy('lista_lectores') 
 
-class LectorUpdateView(UpdateView):
+class LectorUpdateView(LoginRequiredMixin,UpdateView):
     model = Lector
     fields = ('apellido', 'nombre', 'email')
     success_url = reverse_lazy('lista_lectores')
 
-class LectorDeleteView(DeleteView):
+class LectorDeleteView(LoginRequiredMixin, DeleteView):
     model = Lector
     success_url = reverse_lazy('lista_lectores')   
 

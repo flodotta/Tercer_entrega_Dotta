@@ -1,5 +1,10 @@
 {% extends "control_usuarios/base.html" %}
 
 {% block contenido %}
-<h1>Bienvenidos al Blog</h1>
+<h1>Bienvenidos al Blog </h1>
+{% if user.is_authenticated %}
+<p>Hola , {{user.username}}</p>
+{% else %}
+<p>Usuario no autenticado</p>
+{% endif %}
 {% endblock contenido %}
